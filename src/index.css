@@ -65,3 +65,16 @@ a{
   padding: 10px;
   margin: 10px;
 }
+
+
+.page__container{
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  gap:0.2rem
+  }
+  
+  .active__page{
+  background-color: blueviolet;
+  border: none;
+  }
