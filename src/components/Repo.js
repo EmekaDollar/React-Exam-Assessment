@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Outlet, useNavigate } from "react-router-dom";
+import {FaBars, FaTimes} from "react-icons/fa"
 
 const Repo = () => {
   const [items, setItems] = useState([]);
@@ -34,41 +35,57 @@ const Repo = () => {
     pages.push(i);
   }
 
+  const [click, setClick] = useState(false)
+  const handleClick = () => setClick(!click)
   return (
     <div>
       <header className='primary-header'>
-        <Link className='logo' to='/'>
-          <span className='logo-name'>Zion Clothing Company</span>
-        </Link>
+        <span className="nav-pull" >
+          <Link className='logo' to='/'>
+            <span className='logo-name'>Zion</span>
+          </Link>
+          <div className="menu-icon" onClick={handleClick}>
+            {click ? <FaTimes className="fas fa-times" /> : <FaBars className="fas fa-bars" />}
+          </div>
+        </span>
         <div className='container'>
-          <nav className='primary_nav'>
-            <Link to='/' className='navigate'>
-              Home Page
-            </Link>
-            <Link to='about' className='navigate'>
-              About
-            </Link>
+        <nav className={click ? "primary-nav" : "primary-nav close"}>
+            <Link to='/' className='navigate nav-effect'>Home</Link>
+            <Link to='about' className='navigate nav-effect'>About</Link>
+            <Link to='/error' className='navigate error'>Error</Link>
           </nav>
         </div>
       </header>
 
-      <div>
-        <h1>Pagination Demo</h1>
+      <div className="repo-wrap">
+        <h1 className="pagination-demo">pagination demo</h1>
+        <div className="user-wrap">
         {loading ? (
-          <p>loading...</p>
+          <p className="loading-text">loading...</p>
         ) : (
           currentUser.map((user) => (
-            <div
+            <div className="user-container"
               onClick={() => {
                 navigate(`/users/${user.name}`);
               }}
-              style={{ border: "1px solid red" }}
             >
-              <p>FirstName : {user.name}</p>
-              <p>Language : {user.language}</p>
+
+              <div class="card-container">
+                <div class="card">
+                  <div class="box">
+                    <div class="content">
+                      <h2>01</h2>
+                      <h3>FirstName : {user.name}</h3>
+                      <p>Language : {user.language}</p>
+                      <Link to='/about' className='card-link'>About</Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           ))
         )}
+      </div>
       </div>
 
       <div className='page__container'>

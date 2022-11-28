@@ -19,7 +19,7 @@ function GithubRepo() {
       }, [name]);
 
   return (
-    <div>
+    <div className="json-container">
       <p>{JSON.stringify(repo)}</p>
     </div>
   )

@@ -11,7 +11,6 @@ import {ErrorBoundary} from 'react-error-boundary';
 import Error from "./components/Error";
 import ErrorTest from "./components/ErrorTest";
 
-
 function App() {
   return (
     <section className="App">

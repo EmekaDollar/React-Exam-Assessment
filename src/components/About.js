@@ -1,21 +1,33 @@
-import React from 'react'
+import React, {useState} from "react";
 import {Link, Outlet} from "react-router-dom"
+import {FaBars, FaTimes} from "react-icons/fa"
 
 const About = () => {
-  return (
+    const [click, setClick] = useState(false)
+    const handleClick = () => setClick(!click)
+
+    return (
     <div>
     <header className="primary-header">
-        <Link className="logo" to="/"><span className="logo-name">Zion Clothing Company</span></Link>
+        <span className="nav-pull" >
+          <Link className='logo' to='/'>
+            <span className='logo-name'>Zion</span>
+          </Link>
+          <div className="menu-icon" onClick={handleClick}>
+            {click ? <FaTimes className="fas fa-times" /> : <FaBars className="fas fa-bars" />}
+          </div>
+        </span>
         <div className="container">
-          <nav className="primary_nav">
-            <Link to="/" className='navigate'>Home Page</Link> 
-            <Link to="users" className='navigate'>Users</Link> 
-          </nav>
+            <nav className={click ? "primary-nav" : "primary-nav close"}>
+                <Link to="/" className='navigate nav-effect'>Home</Link> 
+                <Link to='/users' className='navigate nav-effect'>Users</Link> 
+                <Link to='/error' className='navigate error'>Error</Link>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <section className="about-section">
+    <main className='about-section'>
+        <section>
             <div className="container">
                 <div>
                     <h3>
@@ -41,9 +53,9 @@ const About = () => {
         </section>
 
         <section className="next-section">
-            <nav>
-                <Link to="products">Products</Link>
-                <Link to="features">Features</Link>
+            <nav className='product-features-wrap'>
+                <Link className='products' to="products">Products</Link>
+                <Link className='features' to="features">Features</Link>
             </nav> 
             <Outlet />
         </section>        
